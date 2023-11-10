@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+
+function MyComponent(props) {
+
+  return  (
+    <p> this is {props.message}</p>
+  );
+
+}
 
 function App() {
+  const [message, setMessage] = useState('iii');
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:5000/api')
+      .then(response => response.json())
+      .then(data => setMessage(data["message"]));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>{message}</h1>
+      <MyComponent message="second"></MyComponent>
+      <MyComponent message="hi"/>
     </div>
   );
 }
