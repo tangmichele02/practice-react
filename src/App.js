@@ -1,27 +1,15 @@
 import { useState, useEffect } from 'react';
-
-function MyComponent(props) {
-
-  return  (
-    <p> this is {props.message}</p>
-  );
-
-}
+import SubmitButton from './components/SubmitButton';
+import FormGroup from './components/FormGroup';
+import Headers from './components/Headers';
+import './style.css'
 
 function App() {
-  const [message, setMessage] = useState('iii');
-
-  useEffect(() => {
-    fetch('http://127.0.0.1:5000/api')
-      .then(response => response.json())
-      .then(data => setMessage(data["message"]));
-  }, []);
-
   return (
     <div>
-      <h1>{message}</h1>
-      <MyComponent message="second"></MyComponent>
-      <MyComponent message="hi"/>
+      <Headers/>
+      <FormGroup/>
+      <SubmitButton/>
     </div>
   );
 }
